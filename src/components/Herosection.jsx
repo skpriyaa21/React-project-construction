@@ -100,14 +100,28 @@ export default function Herosection() {
       {!isOpen && (
         <div className="absolute right-4 sm:right-8 top-[47%] transform -translate-y-1/2 flex flex-col items-center gap-6 z-50">
           {[
-            { icon: <FaInstagram />, label: "Instagram" },
-            { icon: <FaYoutube />, label: "YouTube" },
-            { icon: <FaEnvelope />, label: "Mail" },
+            {
+              icon: <FaInstagram />,
+              label: "Instagram",
+              href: "https://www.instagram.com/ar_construction69",
+            },
+            {
+              icon: <FaYoutube />,
+              label: "YouTube",
+              href: "https://www.youtube.com",
+            },
+            {
+              icon: <FaEnvelope />,
+              label: "Mail",
+              href: "mailto:arconstruction.tuticorin@gmail.com",
+            },
           ].map((item, i) => (
-            <div
+            <a
               key={i}
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
               className="relative group flex flex-col items-center cursor-pointer"
-              onClick={(e) => e.preventDefault()}
               style={{ overflow: "visible" }} // ensure tooltip isn't clipped
             >
               {/* Icon Circle */}
@@ -129,7 +143,7 @@ export default function Herosection() {
               >
                 {item.label}
               </span>
-            </div>
+            </a>
           ))}
         </div>
       )}

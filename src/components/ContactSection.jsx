@@ -8,8 +8,6 @@ import {
   FaYoutube,
   FaEnvelopeOpen,
   FaInstagram,
-  FaCheckCircle,
-  FaTimesCircle,
 } from "react-icons/fa";
 const ContactSection = () => {
   const form = useRef();
@@ -110,7 +108,11 @@ const ContactSection = () => {
               className="w-full bg-transparent border-b border-gray-600 focus:border-green-400 p-3 mb-5 outline-none text-white transition resize-none"
               required
             />
-            <input type="hidden" name="time" value={new Date().toLocaleString()} />
+            <input
+              type="hidden"
+              name="time"
+              value={new Date().toLocaleString()}
+            />
             <button className="w-full bg-[#FFD700] hover:bg-green-600 text-black font-semibold py-3 rounded-md transition">
               SUBMIT
             </button>
@@ -160,13 +162,43 @@ const ContactSection = () => {
             </div>
             {/* Social Icons */}
             <div className="flex space-x-5 mt-6 text-gray-400 justify-start">
-              <FaEnvelopeOpen className="hover:text-[#FFD700] transition text-lg cursor-pointer" />
-              <FaInstagram className="hover:text-[#FFD700] transition text-lg cursor-pointer" />
-              <FaYoutube className="hover:text-[#FFD700] transition text-lg cursor-pointer" />
+              <a
+                href="mailto:arconstruction.tuticorin@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#FFD700] transition text-lg"
+              >
+                <FaEnvelopeOpen className="hover:text-[#FFD700] transition text-lg cursor-pointer" />
+              </a>
+              <a
+                href="https://www.instagram.com/ar_construction69"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#FFD700] transition text-lg"
+              >
+                <FaInstagram className="hover:text-[#FFD700] transition text-lg cursor-pointer" />
+              </a>
+              <a
+                href="https://www.youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#FFD700] transition text-lg"
+              >
+                <FaYoutube className="hover:text-[#FFD700] transition text-lg cursor-pointer" />
+              </a>
             </div>
           </motion.div>
         </div>
       </div>
+      <motion.button
+        onClick={() => window.open("https://wa.me/918681988427", "_blank")}
+        className="fixed bottom-6 left-6 w-12 h-12 z-50 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition duration-300"
+        aria-label="Chat with us on WhatsApp"
+        animate={{ scale: [1, 1.3, 1] }}
+        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <FaWhatsapp className="text-3xl leading-none" />
+      </motion.button>
     </section>
   );
 };

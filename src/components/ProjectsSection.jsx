@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Project1 from "../assets/Images/InteriorConvo2.jpeg";
 import Project2 from "../assets/Images/DesignShowing.jpeg";
@@ -31,6 +31,31 @@ const projects = [
 ];
 
 export default function ProjectsSection() {
+  const scrollRef = useRef(null);
+  const [isPaused, setIsPaused] = useState(false);
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+    let scrollAmount = 0;
+    const scrollStep = 2.5;
+    const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+    let animationFrame;
+
+    const autoScroll = () => {
+      if (!isPaused) {
+        scrollAmount += scrollStep;
+        if (scrollAmount >= maxScroll) scrollAmount = 0;
+        scrollContainer.scrollTo({ left: scrollAmount, behavior: "smooth" });
+      }
+      animationFrame = requestAnimationFrame(autoScroll);
+    };
+    animationFrame = requestAnimationFrame(autoScroll);
+    return () => cancelAnimationFrame(animationFrame);
+  }, [isPaused]);
+
+  // Pause on hover or touch
+  const handlePause = () => setIsPaused(true);
+  const handleResume = () => setIsPaused(false);
   return (
     <section id="projects" className="py-20 bg-white">
       <div className="max-w-6xl mx-auto px-6">
@@ -50,13 +75,18 @@ export default function ProjectsSection() {
             some of our latest works
           </h2>
         </motion.div>
-        {/* Project Cards */}
+        {/* Project Cards with Auto-Scroll and Pause*/}
         <motion.div
+          ref={scrollRef}
           className="flex overflow-x-auto space-x-6 pb-6 scrollbar-hide snap-x snap-mandatory"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9 }}
           viewport={{ once: true }}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setIsPaused(false)}
         >
           {projects.map((p, idx) => (
             <motion.figure
@@ -65,20 +95,24 @@ export default function ProjectsSection() {
               initial={{ opacity: 0, y: 60 }}
               whileHover={{
                 scale: 1.03,
-                boxShadow: "0 12px 30px #0d0f8d33",
+                // boxShadow: "0 12px 30px #0d0f8d33",
               }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.25 }}
               viewport={{ once: true }}
             >
               <div className="relative w-full h-[420px] overflow-hidden rounded-xl flex items-center justify-center bg-gray-100">
-                <img
-                  src={p.img}
-                  alt={p.title}
-                  className="w-full h-full object-cover rounded-xl"
+                <motion.div
                   whileHover={{ scale: 1.15 }}
                   transition={{ duration: 0.3 }}
-                />
+                  className="w-full h-full"
+                >
+                  <img
+                    src={p.img}
+                    alt={p.title}
+                    className="w-full h-full object-cover rounded-xl"
+                  />
+                </motion.div>
               </div>
               <figcaption className="p-3 bg-white">
                 <div className="text-sm text-gray-600">{p.title}</div>

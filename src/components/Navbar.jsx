@@ -60,7 +60,7 @@ export default function Navbar() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="fixed top-0 right-0 h-full w-64  bg-white text-[#002349] border-l-4 border-[#FFD700] shadow-[0_0_20px_rgba(0,0,0,0.1)] backdrop-blur-md shadow-lg flex flex-col items-start justify-center px-8 space-y-8 text-xl font-medium z-50 rounded-l-2xl"
+            className="fixed top-0 right-0 h-full w-[50vw] sm:w-64  bg-white text-[#002349] border-l-4 border-[#FFD700] shadow-[0_0_20px_rgba(0,0,0,0.1)] backdrop-blur-md shadow-lg flex flex-col items-start justify-center px-8 space-y-8 text-xl font-medium z-50 rounded-l-2xl"
           >
             {/* ===== Menu Links ===== */}
             <motion.a

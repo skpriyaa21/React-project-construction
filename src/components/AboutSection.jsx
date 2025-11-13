@@ -1,8 +1,23 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaTools, FaRegEye, FaClock, FaShieldAlt } from "react-icons/fa";
 import Image from "../assets/Images/Trust.jpeg";
 
+function useMediaQuery(query) {
+  const [matches, setMatches] = useState(
+    () => window.matchMedia(query).matches
+  );
+
+  useEffect(() => {
+    const mediaQueryList = window.matchMedia(query);
+    const listener = (e) => setMatches(e.matches);
+    mediaQueryList.addEventListener("change", listener);
+    return () => mediaQueryList.removeEventListener("change", listener);
+  }, [query]);
+
+  return matches;
+}
 export default function AboutSection() {
   const coreValues = [
     { icon: <FaTools />, label: "Craftsmanship" },
@@ -10,6 +25,8 @@ export default function AboutSection() {
     { icon: <FaClock />, label: "Timely Delivery" },
     { icon: <FaShieldAlt />, label: "Durability" },
   ];
+  const isMobile = useMediaQuery("(max-width: 640px)");
+  const radius = isMobile ? 100 : 130;
 
   return (
     <section id="about" className="py-16 bg-white px-6">
@@ -27,14 +44,14 @@ export default function AboutSection() {
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* Left Column */}
         <motion.div
-          className="text-gray-700 text-lg font-semibold leading-relaxed space-y-8 flex flex-col items-center md:items-start"
+          className="text-gray-700 text-lg font-semibold leading-relaxed space-y-8 flex flex-col items-center text-center md:items-center md:text-center"
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
           {/* Paragraph */}
-          <p className="text-center md:text-left max-w-xl">
+          <p className="text-center md:text-left max-w-xl px-2">
             AR Construction & Properties combines traditional craftsmanship with
             modern engineering and design. We focus on durable builds,
             transparent processes, and timely delivery.You dream it.We build it
@@ -43,7 +60,7 @@ export default function AboutSection() {
           </p>
 
           {/* Centered Circle */}
-          <div className="relative w-[260px] h-[260px] flex justify-center items-center mx-auto md:mx-0">
+          <div className="relative w-[220px] h-[220px] sm:w-[260px] sm:h-[260px]  flex justify-center items-center mx-auto">
             {/* Center Label */}
             <motion.div
               initial={{ scale: 0 }}
@@ -71,7 +88,6 @@ export default function AboutSection() {
             {/* Circular Icons */}
             {coreValues.map((value, i) => {
               const angle = (i / coreValues.length) * 2 * Math.PI - Math.PI / 2;
-              const radius = 130;
               const x = radius * Math.cos(angle);
               const y = radius * Math.sin(angle);
 
@@ -94,7 +110,7 @@ export default function AboutSection() {
                     transition: { duration: 0.6 },
                   }}
                 >
-                  <div className="text-3xl text-[#FFD700] mb-1 animate-pulse">
+                  <div className="text-2xl sm:text-3xl text-[#FFD700] mb-1 animate-pulse">
                     {value.icon}
                   </div>
                   <span className="text-sm font-semibold text-[#002349]">
