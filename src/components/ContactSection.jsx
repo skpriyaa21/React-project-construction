@@ -37,6 +37,7 @@ const ContactSection = () => {
             message: "Failed to send message. Please try again later.",
             type: "error",
           });
+          setTimeout(() => setStatus({ message: "", type: "" }), 3000);
         }
       );
   };
