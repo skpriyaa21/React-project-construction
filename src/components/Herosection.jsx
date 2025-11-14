@@ -49,29 +49,30 @@ export default function Herosection() {
         </p>
 
         <h2
-          className="text-xl sm:text-2xl md:text-4xl font-extralight leading-snug text-white mb-6 break-words whitespace-normal"
+          className="text-lg sm:text-2xl md:text-3xl text-white mb-6 leading-relaxed max-w-[22rem] sm:max-w-2xl"
           style={{ fontFamily: "'Poppins', sans-serif" }}
         >
-          We are a creative team transforming ideas
-          <br />
-          into {" "}
-          <span className="text-[#FFD700] font-light">enduring landmarks</span>
-           {" "} crafting dreams <br />
-          with{" "}
+          We are a creative team transforming ideas into{" "}
+          <span className="text-[#FFD700] font-light">enduring landmarks</span>,
+          crafting dreams with{" "}
           <span className="text-[#FFD700] font-light">concrete and steel.</span>
         </h2>
 
         <h2
-          className="flex flex-wrap items-center gap-2 sm:gap-3 text-xl sm:text-2xl md:text-4xl font-light text-white mb-8 leading-tight"
+          className="flex items-center text-xl sm:text-2xl md:text-3xl font-light text-white mb-8 leading-tight max-w-[22rem] sm:max-w-2xl"
           style={{ fontFamily: "'Poppins', sans-serif" }}
         >
-          <FaHandshake className="text-[#FFD700] text-3xl md:text-4xl" />
-          Build on <span className="text-[#FFD700] font-medium">Trust</span>,
-          Focused on <span className="text-[#FFD700] font-medium">Quality</span>
+          <FaHandshake className="text-[#FFD700] text-3xl md:text-4xl mr-2 flex-shrink-0" />
+
+          <span className="block">
+            Build on <span className="text-[#FFD700] font-medium">Trust</span>,
+            Focused on{" "}
+            <span className="text-[#FFD700] font-medium">Quality</span>
+          </span>
         </h2>
 
         <p className="text-lg text-gray-200 mb-10 max-w-2xl leading-relaxed">
-          From dream homes to landmark commercial projects — we craft excellence
+          From dream homes to landmark commercial projects - we craft excellence
           with precision, passion, and integrity.
         </p>
 
